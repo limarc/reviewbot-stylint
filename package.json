@@ -1,6 +1,6 @@
 {
   "name": "reviewbot-stylint",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The stylint plugin for reviewbot",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,7 @@
   "author": "Alexander Lobashev",
   "license": "MIT",
   "dependencies": {
+    "async": "1.3.0",
     "stylint": "1.0.9"
   }
 }
