@@ -20,7 +20,7 @@ module.exports = function(config) {
 
     return {
         type: 'stylint',
-        review: function(files, params, done) {
+        review: function(files, done) {
             var log = {
                 success: true,
                 errors: []
