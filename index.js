@@ -1,4 +1,5 @@
 var fs = require('fs'),
+    path = require('path'),
     spawn = require('child_process').spawn,
     async = require('async'),
     command = require.resolve('stylint').replace(/index\.js$/, 'bin/stylint')
@@ -8,9 +9,13 @@ if (fs.existsSync('./.stylintrc')) {
     config = JSON.parse(fs.readFileSync('./.stylintrc', 'utf8'));
 }
 
-module.exports = function(extensions) {
-    if (!extensions || extensions.constructor !== Array) {
-        extensions = ['styl'];
+module.exports = function(config) {
+    if (typeof config !== 'object') {
+        config = {};
+    }
+
+    if (!Array.isArray(config.extensions)) {
+        config.extensions = ['.styl'];
     }
 
     return {
@@ -24,7 +29,7 @@ module.exports = function(extensions) {
             var streams = [];
 
             files.forEach(function(filename) {
-                if (extensions.indexOf(filename.split('.').pop()) === -1) {
+                if (config.extensions.indexOf(path.extname(filename)) === -1) {
                     return;
                 }
 
