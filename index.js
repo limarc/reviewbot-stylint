@@ -3,10 +3,10 @@ var fs = require('fs'),
     spawn = require('child_process').spawn,
     async = require('async'),
     command = require.resolve('stylint').replace(/index\.js$/, 'bin/stylint')
-    config = {};
+    stylintrc = {};
 
 if (fs.existsSync('./.stylintrc')) {
-    config = JSON.parse(fs.readFileSync('./.stylintrc', 'utf8'));
+    stylintrc = JSON.parse(fs.readFileSync('./.stylintrc', 'utf8'));
 }
 
 module.exports = function(config) {
@@ -33,7 +33,7 @@ module.exports = function(config) {
                     return;
                 }
 
-                var args = [filename, ' --config', config, ' --strict'];
+                var args = [filename, ' --config', stylintrc, ' --strict'];
 
                 streams.push(function(callback) {
                     var filename = this.filename,
