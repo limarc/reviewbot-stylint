@@ -1,2 +1,2 @@
-The stylint plugin for reviewbot
+The stylint plugin for reviewbot [Deprecated]
 https://github.com/limarc/reviewbot
